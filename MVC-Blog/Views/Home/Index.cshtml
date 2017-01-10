@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model IEnumerable<MVC_Blog.Models.Post>
+
+<div class="jumbotron">
+    <h1>MVC Blog</h1>
+</div>
+
+<section class="row">
+
+    @foreach (var post in Model)
+    {
+        <article class="post col-md-4">
+            <h2><a href="/Posts/Details/@post.Id">@MVC_Blog.Classes.Utils.CutText(post.Title, 20)</a></h2>
+            <div>
+                Created on <i>@post.Date</i>
+                @if (@post.Author != null)
+                {
+                    @:by <i>@post.Author.FullName</i>
+                }
+            </div>
+            <p>@MVC_Blog.Classes.Utils.CutText(post.Body)</p>
+        </article>
+    }
+</section>
